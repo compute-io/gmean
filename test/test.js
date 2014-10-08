@@ -86,13 +86,14 @@ describe( 'compute-gmean', function tests() {
 		assert.closeTo( gmean( data ), expected, 0.0001 );
 	});
 
-	it( 'should return 0 if an input array contains a 0', function test() {
-		var data, expected;
+	it( 'should return NaN if an input array contains a 0', function test() {
+		var data, mu;
 
 		data = [ 2, 4, 0, 3, 8, 2 ];
-		expected = 0;
+		mu = gmean( data );
 
-		assert.strictEqual( gmean( data ), expected );
+		// Check: mu === NaN
+		assert.ok( typeof mu === 'number' && mu !== mu );
 	});
 
 	it( 'should return NaN when an array contains an odd number', function test() {
