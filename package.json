@@ -1,6 +1,6 @@
 {
   "name": "compute-gmean",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Computes the geometric mean over an array of values.",
   "author": {
     "name": "Rebekah Smith",
