@@ -1,7 +1,5 @@
-gmean
+Geometric Mean
 =====
-
-====
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > Computes the geometric mean over an array of values.
@@ -15,9 +13,27 @@ $ npm install compute-gmean
 
 ## Usage
 
+To use the module,
+
 ``` javascript
 var gmean = require( 'compute-gmean' );
 ```
+
+#### gmean( arr )
+
+Computes the geometric mean over the array.
+
+``` javascript
+var data = [ 1, 5, 2, 3, 7 ];
+
+var mu = gmean( data );
+// returns ~2.914
+```
+
+Note: only calculate the geometric mean over an `array` of __positive__ numbers; see "Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition" by David J. Sheskin.
+
+If an `array` contains a `0`, the function returns `0`. If an `array` contains values less than `0`, the function returns `NaN`.
+
 
 ## Examples
 
@@ -66,7 +82,7 @@ $ make test-cov
 Istanbul creates a `./reports/coverage` directory. To access an HTML version of the report,
 
 ``` bash
-$ open reports/coverage/lcov-report/index.html
+$ make view-cov
 ```
 
 

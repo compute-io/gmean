@@ -45,16 +45,48 @@ describe( 'compute-gmean', function tests() {
 		}
 	});
 
+	it( 'should throw an error if an array contains non-numeric values', function test() {
+		var values = [
+				'5',
+				true,
+				null,
+				NaN,
+				undefined,
+				function(){},
+				[],
+				{}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( TypeError );
+		}
+
+		function badValue( value ) {
+			return function() {
+				gmean( [value] );
+			};
+		}
+	});
+
 	it( 'should compute the geometric mean', function test() {
-		var data, expected;
+		var data,
+			prod,
+			len,
+			expected;
 
 		data = [ 2, 4, 5, 3, 8, 2 ];
-		expected = 3.52547;
+
+		prod = 1;
+		len = data.length;
+		for ( var i = 0; i < len; i++ ) {
+			prod *= data[ i ];
+		}
+		expected = Math.pow( prod, 1/len );
 
 		assert.closeTo( gmean( data ), expected, 0.0001 );
 	});
 
-		it( 'should handle values of 0', function test() {
+	it( 'should return 0 if an input array contains a 0', function test() {
 		var data, expected;
 
 		data = [ 2, 4, 0, 3, 8, 2 ];
@@ -63,13 +95,14 @@ describe( 'compute-gmean', function tests() {
 		assert.strictEqual( gmean( data ), expected );
 	});
 
-		it( 'should return NaN when array comtains a negative value', function test() {
-		var data, expected;
+	it( 'should return NaN when an array contains an odd number', function test() {
+		var data, mu;
 
 		data = [ 2, 4, 5, 3, -8, 2 ];
-		expected = NaN;
+		mu = gmean( data );
 
-		assert.notStrictEqual( gmean( data ), expected );
+		// Check: mu === NaN
+		assert.ok( typeof mu === 'number' && mu !== mu );
 	});
 
 });
