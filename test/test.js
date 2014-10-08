@@ -45,29 +45,6 @@ describe( 'compute-gmean', function tests() {
 		}
 	});
 
-	it( 'should throw an error if an array contains non-numeric values', function test() {
-		var values = [
-				'5',
-				true,
-				null,
-				NaN,
-				undefined,
-				function(){},
-				[],
-				{}
-			];
-
-		for ( var i = 0; i < values.length; i++ ) {
-			expect( badValue( values[i] ) ).to.throw( TypeError );
-		}
-
-		function badValue( value ) {
-			return function() {
-				gmean( [value] );
-			};
-		}
-	});
-
 	it( 'should compute the geometric mean', function test() {
 		var data,
 			prod,
