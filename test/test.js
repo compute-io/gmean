@@ -73,7 +73,7 @@ describe( 'compute-gmean', function tests() {
 		assert.ok( typeof mu === 'number' && mu !== mu );
 	});
 
-	it( 'should return NaN when an array contains an odd number', function test() {
+	it( 'should return NaN when an array contains a negative number', function test() {
 		var data, mu;
 
 		data = [ 2, 4, 5, 3, -8, 2 ];
