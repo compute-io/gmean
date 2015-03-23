@@ -41,7 +41,8 @@
     "url": "https://github.com/compute-io/gmean/issues"
   },
   "dependencies": {
-    "validate.io-array": "^1.0.3"
+    "validate.io-array": "^1.0.3",
+    "validate.io-function": "^1.0.2"
   },
   "devDependencies": {
     "chai": "2.x.x",
