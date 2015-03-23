@@ -1,3 +1,5 @@
+/* global require, describe, it */
+'use strict';
 
 // MODULES //
 
@@ -17,7 +19,6 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'compute-gmean', function tests() {
-	'use strict';
 
 	it( 'should export a function', function test() {
 		expect( gmean ).to.be.a( 'function' );
@@ -45,6 +46,28 @@ describe( 'compute-gmean', function tests() {
 		}
 	});
 
+	it( 'should throw an error if provided an accessor which is not a function', function test() {
+		var values = [
+			'5',
+			5,
+			true,
+			undefined,
+			null,
+			NaN,
+			[],
+			{}
+		];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[ i ] ) ).to.throw( TypeError );
+		}
+		function badValue( value ) {
+			return function() {
+				gmean( [1,2,3], value );
+			};
+		}
+	});
+
 	it( 'should compute the geometric mean', function test() {
 		var data,
 			prod,
@@ -62,6 +85,26 @@ describe( 'compute-gmean', function tests() {
 
 		assert.closeTo( gmean( data ), expected, 0.0001 );
 	});
+
+	it( 'should compute the geometric mean using an accessor function', function test() {
+		var data, expected;
+
+		data = [
+			{'x':3},
+			{'x':4},
+			{'x':5}
+		];
+
+		expected = Math.pow( 60, 1/3 );
+		assert.closeTo( gmean( data, getValue ), expected, 0.0001 );
+
+		function getValue( d ) {
+			return d.x;
+		}
+
+	});
+
+	// Change to assert.isTrue( isNaN( mu ) ) ?? //
 
 	it( 'should return NaN if an input array contains a 0', function test() {
 		var data, mu;
@@ -81,6 +124,43 @@ describe( 'compute-gmean', function tests() {
 
 		// Check: mu === NaN
 		assert.ok( typeof mu === 'number' && mu !== mu );
+	});
+
+	it( 'should return NaN if an input array contains a 0 and an accessor is used', function test() {
+		var data, mu;
+
+		data = [
+			{'x':3},
+			{'x':0},
+			{'x':5}
+		];
+
+		mu = gmean( data, getValue );
+
+		// Check: mu === NaN
+		assert.ok( typeof mu === 'number' && mu !== mu );
+
+		function getValue( d ) {
+			return d.x;
+		}
+	});
+
+	it( 'should return NaN when an array contains a negative number and an accessor is used', function test() {
+		var data, mu;
+
+		data = [
+			{'x':3},
+			{'x':-4},
+			{'x':5}
+		];
+		mu = gmean( data, getValue );
+
+		// Check: mu === NaN
+		assert.ok( typeof mu === 'number' && mu !== mu );
+
+		function getValue( d ) {
+			return d.x;
+		}
 	});
 
 });
