@@ -1,7 +1,7 @@
 {
   "name": "compute-gmean",
   "version": "1.0.3",
-  "description": "Computes the geometric mean over an array of values.",
+  "description": "Computes the geometric mean of an array.",
   "author": {
     "name": "Rebekah Smith",
     "email": "rebekahjs17@gmail.com"
@@ -35,7 +35,11 @@
     "mean",
     "average",
     "geometric",
-    "geometric mean"
+    "geometric mean",
+    "array",
+    "mathematics",
+    "math",
+    "central tendency"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/gmean/issues"

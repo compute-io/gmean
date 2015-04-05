@@ -6,11 +6,11 @@
 var // Expectation library:
 	chai = require( 'chai' ),
 
-	// Module to be tested:
-	gmean = require( './../lib' ),
+	// Validate if a value is equal to NaN:
+	isnan = require( 'validate.io-nan' ),
 
-	// Validate modules:
-	isNaN = require( 'validate.io-nan' );
+	// Module to be tested:
+	gmean = require( './../lib' );
 
 
 // VARIABLES //
@@ -114,7 +114,7 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data );
 
 		// Check: mu === NaN
-		assert.isTrue( isNaN( mu) );
+		assert.isTrue( isnan( mu) );
 	});
 
 	it( 'should return NaN when an array contains a negative number', function test() {
@@ -124,10 +124,10 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data );
 
 		// Check: mu === NaN
-		assert.isTrue( isNaN( mu) );
+		assert.isTrue( isnan( mu) );
 	});
 
-	it( 'should return NaN if an input array contains a 0 and an accessor is used', function test() {
+	it( 'should return NaN if an accessed array value is 0', function test() {
 		var data, mu;
 
 		data = [
@@ -139,14 +139,14 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data, getValue );
 
 		// Check: mu === NaN
-		assert.isTrue( isNaN( mu) );
+		assert.isTrue( isnan( mu) );
 
 		function getValue( d ) {
 			return d.x;
 		}
 	});
 
-	it( 'should return NaN when an array contains a negative number and an accessor is used', function test() {
+	it( 'should return NaN an accessed value is a negative number', function test() {
 		var data, mu;
 
 		data = [
@@ -157,11 +157,15 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data, getValue );
 
 		// Check: mu === NaN
-		assert.isTrue( isNaN( mu) );
+		assert.isTrue( isnan( mu) );
 
 		function getValue( d ) {
 			return d.x;
 		}
+	});
+
+	it( 'should return `null` if provided an empty array', function test() {
+		assert.isNull( gmean( [] ) );
 	});
 
 });
