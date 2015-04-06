@@ -114,7 +114,7 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data );
 
 		// Check: mu === NaN
-		assert.isTrue( isnan( mu) );
+		assert.isTrue( isnan( mu ) );
 	});
 
 	it( 'should return NaN when an array contains a negative number', function test() {
@@ -124,7 +124,7 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data );
 
 		// Check: mu === NaN
-		assert.isTrue( isnan( mu) );
+		assert.isTrue( isnan( mu ) );
 	});
 
 	it( 'should return NaN if an accessed array value is 0', function test() {
@@ -139,7 +139,7 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data, getValue );
 
 		// Check: mu === NaN
-		assert.isTrue( isnan( mu) );
+		assert.isTrue( isnan( mu ) );
 
 		function getValue( d ) {
 			return d.x;
@@ -157,7 +157,7 @@ describe( 'compute-gmean', function tests() {
 		mu = gmean( data, getValue );
 
 		// Check: mu === NaN
-		assert.isTrue( isnan( mu) );
+		assert.isTrue( isnan( mu ) );
 
 		function getValue( d ) {
 			return d.x;
