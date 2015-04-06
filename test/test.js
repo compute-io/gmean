@@ -146,7 +146,7 @@ describe( 'compute-gmean', function tests() {
 		}
 	});
 
-	it( 'should return NaN an accessed value is a negative number', function test() {
+	it( 'should return NaN if an accessed array value is a negative number', function test() {
 		var data, mu;
 
 		data = [
