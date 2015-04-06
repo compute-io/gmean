@@ -28,7 +28,7 @@ var mu = gmean( data );
 // returns ~2.914
 ```
 
-For non-numeric `arrays`, provide an accessor `function` for accessing numeric `array` values
+For non-numeric `arrays`, provide an accessor `function` for accessing numeric values
 
 ``` javascript
 var arr = [
