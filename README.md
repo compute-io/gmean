@@ -2,7 +2,7 @@ Geometric Mean
 =====
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the [geometric mean]() of an array.
+> Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an array.
 
 
 ## Installation
@@ -19,7 +19,7 @@ var gmean = require( 'compute-gmean' );
 
 #### gmean( arr[, accessor] )
 
-Computes the [geometric mean]() of an `array`. For numeric `arrays`,
+Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an `array`. For numeric `arrays`,
 
 ``` javascript
 var data = [ 1, 5, 2, 3, 7 ];
@@ -72,7 +72,7 @@ $ node ./examples/index.js
 
 ## Notes
 
-1. Only calculate the [geometric mean]() of an `array` of __positive__ numbers. The textbook formula for calculating the geometric mean involves taking the product of all `array` elements. If one element is `0`, then the product is `0`, even if all other values are `>>> 0`, yielding a nonsensical geometric mean (and measure of the central tendency). Nonsensical results also arise when an `array` contains negative values leading to a product without positive roots and a geometric mean which does not map to the measure's geometric interpretation. For more information, see *Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition* by David J. Sheskin.
+1. Only calculate the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an `array` of __positive__ numbers. The textbook formula for calculating the geometric mean involves taking the product of all `array` elements. If one element is `0`, then the product is `0`, even if all other values are `>>> 0`, yielding a nonsensical geometric mean (and measure of the central tendency). Nonsensical results also arise when an `array` contains negative values leading to a product without positive roots and a geometric mean which does not map to the measure's geometric interpretation. For more information, see *Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition* by David J. Sheskin.
 2. If an `array` contains values less than or equal to `0`, the function returns `NaN`.
 3. If provided an empty `array`, the function returns `null`.
 4. For arrays exceeding memory constraints, you are encouraged to use streams; see [flow-gmean](https://github.com/flow-io/flow-gmean).
