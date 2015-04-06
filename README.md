@@ -2,7 +2,7 @@ Geometric Mean
 =====
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the geometric mean over an array of values.
+> Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an array.
 
 
 ## Installation
@@ -13,15 +13,13 @@ $ npm install compute-gmean
 
 ## Usage
 
-To use the module,
-
 ``` javascript
 var gmean = require( 'compute-gmean' );
 ```
 
-#### gmean( arr )
+#### gmean( arr[, accessor] )
 
-Computes the geometric mean over an `array`.
+Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an `array`. For numeric `arrays`,
 
 ``` javascript
 var data = [ 1, 5, 2, 3, 7 ];
@@ -30,9 +28,25 @@ var mu = gmean( data );
 // returns ~2.914
 ```
 
-Note: only calculate the geometric mean over an `array` of __positive__ numbers. The textbook formula for calculating the geometric mean involves taking the product of all `array` elements. If one element is `0`, then the product is `0`, even if all other values are `>>> 0`, yielding a nonsensical geometric mean (and measure of the central tendency). Nonsensical results also arise when an `array` contains negative values leading to a product without positive roots and a geometric mean which does not map to the measure's geometric interpretation. For more information, see *Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition* by David J. Sheskin.
+For non-numeric `arrays`, provide an accessor `function` for accessing numeric values
 
-If an `array` contains values less than or equal to `0`, the function returns `NaN`.
+``` javascript
+var arr = [
+	{'x':1},
+	{'x':5},
+	{'x':2},
+	{'x':3},
+	{'x':7}
+]:
+
+function getValue( d ) {
+	return d.x;
+}
+
+var value = prod( arr, getvalue );
+// returns ~2.194
+```
+
 
 
 ## Examples
@@ -54,16 +68,21 @@ To run the example code from the top-level application directory,
 $ node ./examples/index.js
 ```
 
+
+
 ## Notes
 
-For arrays exceeding memory constraints, you are encouraged to use streams; see [flow-gmean](https://github.com/flow-io/flow-gmean).
+1. Only calculate the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an `array` of __positive__ numbers. The textbook formula for calculating the geometric mean involves taking the product of all `array` elements. If one element is `0`, then the product is `0`, even if all other values are `>>> 0`, yielding a nonsensical geometric mean (and measure of the central tendency). Nonsensical results also arise when an `array` contains negative values leading to a product without positive roots and a geometric mean which does not map to the measure's geometric interpretation. For more information, see *Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition* by David J. Sheskin.
+2. If an `array` contains values less than or equal to `0`, the function returns `NaN`.
+3. If provided an empty `array`, the function returns `null`.
+4. For arrays exceeding memory constraints, you are encouraged to use streams; see [flow-gmean](https://github.com/flow-io/flow-gmean).
 
 
 ## Tests
 
 ### Unit
 
-Unit tests use the [Mocha](http://visionmedia.github.io/mocha) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
+Unit tests use the [Mocha](http://mochajs.org) test framework with [Chai](http://chaijs.com) assertions. To run the tests, execute the following command in the top-level application directory:
 
 ``` bash
 $ make test
@@ -87,16 +106,14 @@ $ make view-cov
 ```
 
 
+---
 ## License
 
 [MIT license](http://opensource.org/licenses/MIT). 
 
-
----
 ## Copyright
 
-Copyright &copy; 2014. Rebekah Smith.
-
+Copyright &copy; 2014-2015. Rebekah Smith.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-gmean.svg

@@ -1,7 +1,7 @@
 {
   "name": "compute-gmean",
   "version": "1.0.3",
-  "description": "Computes the geometric mean over an array of values.",
+  "description": "Computes the geometric mean of an array.",
   "author": {
     "name": "Rebekah Smith",
     "email": "rebekahjs17@gmail.com"
@@ -34,17 +34,28 @@
     "stats",
     "mean",
     "average",
-    "geometric mean"
+    "geometric",
+    "geometric mean",
+    "array",
+    "mathematics",
+    "math",
+    "central tendency"
   ],
   "bugs": {
     "url": "https://github.com/compute-io/gmean/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validate.io-array": "^1.0.3",
+    "validate.io-function": "^1.0.2"
+  },
   "devDependencies": {
-    "chai": "1.x.x",
+    "chai": "2.x.x",
     "coveralls": "^2.11.1",
     "istanbul": "^0.3.0",
-    "mocha": "1.x.x"
+    "jshint": "2.x.x",
+    "jshint-stylish": "^1.0.0",
+    "mocha": "2.x.x",
+    "validate.io-nan": "^1.0.3"
   },
   "licenses": [
     {
