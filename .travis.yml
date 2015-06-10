@@ -9,3 +9,4 @@ before_install:
   - npm update -g npm
 after_script:
   - npm run coveralls
+
