@@ -145,8 +145,6 @@ describe( 'compute-gmean', function tests() {
 		}
 		expected = Math.pow( prod, 1/len );
 
-		console.log("ACTUAL:" + actual)
-
 		assert.closeTo( actual, expected, 1e-7 );
 
 		function getValue( d ) {
@@ -168,24 +166,28 @@ describe( 'compute-gmean', function tests() {
 		mat = matrix( data, [5,5], 'int8' );
 
 		// Default:
-		mu = gmean( mat );
-		expected = 'NaN;6.853467509397646;11.915960744952384;16.940930229200212;21.95443221083991';
+		mu = gmean( mat, {
+			'dtype': 'int8'
+		});
+		expected = '0;6;11;16;21';
 
 		assert.strictEqual( mu.toString(), expected, 'default' );
 
 		// Along columns:
 		mu = gmean( mat, {
-			'dim': 2
+			'dim': 2,
+			'dtype': 'int8'
 		});
-		expected = 'NaN;6.853467509397646;11.915960744952384;16.940930229200212;21.95443221083991';
+		expected = '0;6;11;16;21';
 
 		assert.strictEqual( mu.toString(), expected, 'dim: 2' );
 
 		// Along rows:
 		mu = gmean( mat, {
-			'dim': 1
+			'dim': 1,
+			'dtype': 'int8'
 		});
-		expected = 'NaN,7.399061592895298,9.11247136883225,10.525215267484766,11.810793485141037';
+		expected = '0,7,9,10,11';
 
 		assert.strictEqual( mu.toString(), expected, 'dim: 1' );
 	});
