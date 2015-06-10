@@ -2,8 +2,16 @@ Geometric Mean
 =====
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an array.
+> Computes the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean).
 
+The [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) is defined as
+
+<div class="equation" align="center" data-raw-text="G = \left(\prod_{i=0}^{N-1} x_i\right)^{1/N}" data-equation="eq:geometric_mean">
+	<img src="" alt="Equation for the geometric mean.">
+	<br>
+</div>
+
+where `x_0, x_1,...,x_{N-1}` are individual data values and `N` is the total number of values in the data set.
 
 ## Installation
 
@@ -109,11 +117,11 @@ $ make view-cov
 ---
 ## License
 
-[MIT license](http://opensource.org/licenses/MIT). 
+[MIT license](http://opensource.org/licenses/MIT).
 
 ## Copyright
 
-Copyright &copy; 2014-2015. Rebekah Smith.
+Copyright &copy; 2014-2015. The [Compute.io](https://github.com/compute-io) Authors.
 
 
 [npm-image]: http://img.shields.io/npm/v/compute-gmean.svg
