@@ -37,11 +37,12 @@ mu = gmean( data );
 // returns ~2.914
 
 data = new Int8Array( data );
-mu = mean( data );
+mu = gmean( data );
 // returns ~2.914
 ```
 
 Notes:
+
 1. Only calculate the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of an `array` of __positive__ numbers. The textbook formula for calculating the geometric mean involves taking the product of all `array` elements. If one element is `0`, then the product is `0`, even if all other values are `>>> 0`, yielding a nonsensical geometric mean (and measure of the central tendency). Nonsensical results also arise when an `array` contains negative values leading to a product without positive roots and a geometric mean which does not map to the measure's geometric interpretation. For more information, see *Handbook of Parametric and Nonparametric Statistical Procedures: Third Edition* by David J. Sheskin.
 2. If an `array` contains values less than or equal to `0`, the function returns `NaN`.
 3. For arrays exceeding memory constraints, you are encouraged to use streams; see [flow-gmean](https://github.com/flow-io/flow-gmean).
@@ -94,7 +95,7 @@ mat = matrix( data, [5,5], 'int8' );
 	  20 21 22 23 24 ]
 */
 
-mu = mean( mat );
+mu = gmean( mat );
 /*
 	[  NaN
 	   6.853
@@ -107,7 +108,7 @@ mu = mean( mat );
 To compute the [geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) along the rows, set the `dim` option to `1`.
 
 ``` javascript
-mu = hmean( mat, {
+mu = gmean( mat, {
 	'dim': 1
 });
 /*
@@ -118,7 +119,7 @@ mu = hmean( mat, {
 By default, the output [`matrix`](https://github.com/dstructs/matrix) data type is `float64`. To specify a different output data type, set the `dtype` option.
 
 ``` javascript
-mu = hmean( mat, {
+mu = gmean( mat, {
 	'dim': 1,
 	'dtype': 'uint8'
 });
@@ -139,12 +140,12 @@ data = [ 1, 5, 2, 3, 7 ];
 
 // Row vector:
 mat = matrix( new Int8Array( data ), [1,5], 'int8' );
-mu = hmean( mat );
+mu = gmean( mat );
 // returns ~2.194
 
 // Column vector:
 mat = matrix( new Int8Array( data ), [5,1], 'int8' );
-mu = hmean( mat );
+mu = gmean( mat );
 // returns ~2.194
 ```
 
