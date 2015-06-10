@@ -1,10 +1,70 @@
 'use strict';
 
-var gmean = require( './../lib' );
+var matrix = require( 'dstructs-matrix' ),
+	gmean = require( './../lib' );
 
-var data = new Array( 1000 );
-for ( var i = 0; i < data.length; i++ ) {
+var data,
+	mat,
+	mu,
+	i;
+
+
+// ----
+// Plain arrays...
+data = new Array( 1000 );
+for ( i = 0; i < data.length; i++ ) {
 	data[ i ] = Math.random() * 100;
 }
+mu = gmean( data );
+console.log( 'Arrays: %d\n', mu );
 
-console.log( gmean( data ) );
+
+// ----
+// Object arrays (accessors)...
+function getValue( d ) {
+	return d.x;
+}
+for ( i = 0; i < data.length; i++ ) {
+	data[ i ] = {
+		'x': data[ i ]
+	};
+}
+mu = gmean( data, {
+	'accessor': getValue
+});
+console.log( 'Accessors: %d\n', mu );
+
+
+// ----
+// Typed arrays...
+data = new Int32Array( 1000 );
+for ( i = 0; i < data.length; i++ ) {
+	data[ i ] = Math.random() * 100;
+}
+mu = gmean( data );
+console.log( 'Typed arrays: %d\n', mu );
+
+
+// ----
+// Matrices (along rows)...
+mat = matrix( data, [100,10], 'int32' );
+mu = gmean( mat, {
+	'dim': 1
+});
+console.log( 'Matrix (rows): %s\n', mu.toString() );
+
+
+// ----
+// Matrices (along columns)...
+mu = gmean( mat, {
+	'dim': 2
+});
+console.log( 'Matrix (columns): %s\n', mu.toString() );
+
+
+// ----
+// Matrices (custom output data type)...
+mu = gmean( mat, {
+	'dtype': 'uint8'
+});
+console.log( 'Matrix (%s): %s\n', mu.dtype, mu.toString() );
